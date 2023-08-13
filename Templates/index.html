@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #990000;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 500px;
+            margin-top: 80px; /* Adjust this value to move the text area down */
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+        width: 100%;
+        padding: 3px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+        font-size: 16px;
+        background-color: transparent !important; /* Set the background color to transparent */
+    }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .review-container {
+            text-align: center;
+            margin-top: auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .review-text {
+            font-size: 28px;
+            margin-top: -90px;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sentiment Analysis</h1>
+        <form method="post">
+            {% csrf_token %}
+            <textarea name="review_text" rows="2" placeholder="Enter your review here"></textarea>
+            <br>
+            <input type="submit" value="Analyze">
+        </form>
+    </div>
+    <div class="review-container">
+        <p class="review-text">{% if sentiment_result %}<strong></strong> {{ sentiment_result }}{% endif %}</p>
+    </div>
+</body>
+</html>
